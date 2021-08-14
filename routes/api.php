@@ -55,3 +55,21 @@ Route::get('blogs/{id}/comment/{title}/{name}/{email}/{content}/post',function($
             'blog' => $comment
         ]);
 });
+Route::get('blogs/comment/{id}/{title}/{name}/{email}/{content}/edit',function($id,$title,$name,$email,$content){
+    
+    $comment = Comment::findOrFail($id);
+
+    $comment->title = $title;
+
+    $comment->name = $name;
+
+    $comment->email = $email;
+
+    $comment->comment = $content;
+
+    $comment->save();
+
+        return 'Comment saved.<br><br>'.response()->json([
+            'blog' => $comment
+        ]);
+});
