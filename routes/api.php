@@ -35,3 +35,23 @@ Route::get('blogs/{id}',function($id){
         'comments'=>$comments
     ]);
 });
+Route::get('blogs/{id}/comment/{title}/{name}/{email}/{content}/post',function($id,$title,$name,$email,$content){
+    
+    $comment = new Comment;
+
+    $comment->title = $title;
+
+    $comment->name = $name;
+
+    $comment->email = $email;
+
+    $comment->comment = $content;
+
+    $comment->blog_id = $id;
+
+    $comment->save();
+
+        return 'Comment saved.<br><br>'.response()->json([
+            'blog' => $comment
+        ]);
+});
