@@ -73,3 +73,15 @@ Route::get('blogs/comment/{id}/{title}/{name}/{email}/{content}/edit',function($
             'blog' => $comment
         ]);
 });
+Route::get('blogs/comment/{id}/delete',function($id){
+    
+    $comment = Comment::findOrFail($id);
+
+    $title = $comment->title;
+
+    $name = $comment->name;
+
+    $comment->delete();
+
+        return 'Comment '.$title.'. '.$name.' deleted';
+});
