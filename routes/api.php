@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Blog;
+use App\Models\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 | Please make BLOG & COMMENT CRUD ROUTES
 */
+Route::get('blogs',function(){
 
+    $blogs = Blog::all();
+
+    return response()->json([
+        'blogs' => $blogs
+    ]);
+});
