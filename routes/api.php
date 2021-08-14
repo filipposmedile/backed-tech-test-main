@@ -24,3 +24,14 @@ Route::get('blogs',function(){
         'blogs' => $blogs
     ]);
 });
+Route::get('blogs/{id}',function($id){
+
+    $blog = Blog::findOrFail($id);
+
+    $comments = $blog->comments;
+
+    return response()->json([
+        'blog' => $blog,
+        'comments'=>$comments
+    ]);
+});
